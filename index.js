@@ -5,10 +5,10 @@ const pending = document.querySelector(".cards.pending")
 const completed= document.querySelector(".cards.completed")
 
 const taskbox = [todo, pending, completed]
-
+console.log(taskbox)
 function addTaskCard(task, index) {
     taskbox[index].innerHTML += `
-        <form class="card" draggable="true">
+        <form class="card" draggable="true" data-id="${task.taskId}">
         <input type="text" name="task" autocomplete="off" disabled="disabled" value="${task.content}"/>
         <div>
             <span class="task-id">
@@ -25,7 +25,6 @@ function addTaskCard(task, index) {
 }
 
 Kanban.getAllTasks().forEach((tasks, index) => {
-    console.log("YES")
     tasks.forEach(task => {
         addTaskCard(task, index)
     })
@@ -70,6 +69,26 @@ taskbox.forEach(column => {
         if(event.target.classList.contains("delete")) {
             formInput.parentElement.remove()
             Kanban.deleteTask(event.target.dataset.id)
+        }
+    })
+
+    column.addEventListener("dragstart", event => {
+        if(event.target.classList.contains("card")) {
+            event.target.classList.add("dragging")
+        }
+    })
+
+    column.addEventListener("dragover", event => {
+        const card = document.querySelector(".dragging")
+        console.log(card)
+        column.appendChild(card)
+    })
+
+    column.addEventListener("dragend", event => {
+        if(event.target.classList.contains("card")) {
+            event.target.classList.remove("dragging")
+            console.log(event.target.task.value)
+            Kanban.updateTask(event.target.dataset.id, {columnId: event.target.parentElement.dataset.id, content: event.target.task.value})
         }
     })
 })

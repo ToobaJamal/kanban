@@ -1,3 +1,7 @@
 .hide {
-    visibility: hidden;
+    display: none;
+}
+
+.card.dragging{
+    opacity: 0.4;
 }
