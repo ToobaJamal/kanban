@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
     <title>Kanban</title>
 </head>
 <body>
@@ -21,23 +22,11 @@
                             <span class="todo"></span>
                         </div>
                         <div class="cards todo">
-                            <form class="card">
-                                <input type="text" name="task" autocomplete="off" disabled="disabled"/>
-                                <div>
-                                    <span class="task-id">
-                                        #97522
-                                    </span>
-                                    <span>
-                                        <button class="edit">Edit</button>
-                                        <button class="update hide">Update</button>
-                                        <button class="delete">Delete</button>
-                                    </span>
-                                </div>
-                            </form>
+                            
                         </div>
                         <form class="add">
                             <input type="text" name="task" placeholder="New task" autocomplete="off" maxlength="30"/>
-                            <button class="plus">Submit</button>
+                            <button class="plus" data-id="0" name="submit">Submit</button>
                         </form>
                     </div>
                     <div class="taskbox">
@@ -46,23 +35,11 @@
                             <span class="pending"></span>
                         </div>
                         <div class="cards pending">
-                            <form class="card">
-                                <input type="text" name="task" autocomplete="off" disabled="disabled"/>
-                                <div>
-                                    <span class="task-id">
-                                        #97522
-                                    </span>
-                                    <span>
-                                        <button class="edit">Edit</button>
-                                        <button class="update hide">Update</button>
-                                        <button class="delete">Delete</button>
-                                    </span>
-                                </div>
-                            </form>
+                            
                         </div>
                         <form class="add">
                             <input type="text" name="task" placeholder="New task" autocomplete="off" maxlength="30"/>
-                            <button class="plus">Submit</button>
+                            <button class="plus" data-id="1" name="submit">Submit</button>
                         </form>
                     </div>
                     <div class="taskbox">
@@ -71,29 +48,17 @@
                             <span class="completed"></span>
                         </div>
                         <div class="cards completed">
-                            <form class="card">
-                                <input type="text" name="task" autocomplete="off" disabled="disabled"/>
-                                <div>
-                                    <span class="task-id">
-                                        #97522
-                                    </span>
-                                    <span>
-                                        <button class="edit">Edit</button>
-                                        <button class="update hide">Update</button>
-                                        <button class="delete">Delete</button>
-                                    </span>
-                                </div>
-                            </form>
+                            
                         </div>
                         <form class="add">
                             <input type="text" name="task" placeholder="New task" autocomplete="off" maxlength="30"/>
-                            <button class="plus">Submit</button>
+                            <button class="plus" data-id="2" name="submit">Submit</button>
                         </form>
                     </div>
                 </section>
             </div>
         </div>
     </main>
-    <script src="./index.js"></script>
+    <script type="module" src="./index.js"></script>
 </body>
 </html>
