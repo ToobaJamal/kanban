@@ -4,63 +4,82 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="/dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
     <title>Kanban</title>
 </head>
-<body>
-    <main>
+<body class="bg-blue-background h-max-content">
+    <main class="h-max-content">
         <div class="outer">
-            <div class="inner">
-                <section class="heading">
-                    <p>Kanban</p>
-                    <p class="subtitle">Web based kanban</p>
-                </section>
-                <section class="kanban">
-                    <div class="taskbox">
-                        <div class="title">
-                            <p>Todo</p>
-                            <span class="todo"></span>
+            <div class="wrapper mb-36">
+                <div class="inner h-max-content flex flex-col ">
+                    <section class="heading text-center p-10">
+                        <p class="text-white font-bold text-4xl">Kanban</p>
+                        <p class="text-white font-bold text-2xl">Web based kanban</p>
+                    </section>
+                    <section class="kanban flex flex-row max-w-screen-lg justify-between items-center m-auto">
+                        <div class="taskbox self-start rounded-md bg-card-background p-4">
+                            <div class="title flex flex-row justify-between mb-5">
+                                <p class="text-black text-xl font-medium">TODO</p>
+                                <span class="todo text-white font-normal rounded-md bg-orange-500 px-2 py-1"></span>
+                            </div>
+                            <div class="cards todo mb-5" data-id="0">
+                                
+                            </div>
+                            <form class="add bg-white rounded-md p-4 w-full flex flex-col">
+                                <input type="text" name="task" placeholder="New task" autocomplete="off" maxlength="30"/>
+                                <div class="flex justify-end items-center">
+                                    <input type="date" class="deadline-input w-9/12" name="date" onfocus="showPicker()"/>
+                                    <button class="plus p-1 self-end  bg-green rounded-md flex my-auto" data-id="0" name="submit"><span class="material-symbols-outlined text-white font-bold">
+                                        add
+                                        </span></button>
+                                </div>
+                            </form>
+                        </div> 
+                        <div class="taskbox self-start rounded-md bg-card-background p-4">
+                            <div class="title flex flex-row justify-between mb-5">
+                                <p class="text-black text-xl font-medium">IN PROGRESS</p>
+                                <span class="pending text-white font-normal rounded-md bg-orange-500 px-2 py-1""></span>
+                            </div>
+                            <div class="cards pending mb-5" data-id="1">
+                                
+                            </div>
+                            <form class="add bg-white rounded-md p-4 w-full flex flex-col">
+                                <input type="text" name="task" placeholder="New task" autocomplete="off" maxlength="30"/>
+                                <div class="flex justify-end items-center">
+                                    <input type="date" class="deadline-input w-9/12" name="date" onfocus="showPicker()"/>
+                                    <button class="plus p-1 self-end  bg-green rounded-md flex my-auto" data-id="1" name="submit"><span class="material-symbols-outlined text-white font-bold">
+                                        add
+                                        </span></button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="cards todo" data-id="0">
-                            
+                        <div class="taskbox self-start rounded-md bg-card-background p-4">
+                            <div class="title flex flex-row justify-between mb-5">
+                                <p class="text-black text-xl font-medium">COMPLETED</p>
+                                <span class="completed text-white font-normal rounded-md bg-orange-500 px-2 py-1""></span>
+                            </div>
+                            <div class="cards completed mb-5" data-id="2">
+                                
+                            </div>
+                            <form class="add bg-white rounded-md p-4 w-full flex flex-col">
+                                <input type="text" name="task" placeholder="New task" autocomplete="off" maxlength="30"/>
+                                <div class="flex justify-end items-center">
+                                    <input type="date" class="deadline-input w-9/12" name="date" onfocus="showPicker()"/>
+                                    <button class="plus p-1 self-end  bg-green rounded-md flex my-auto" data-id="2" name="submit"><span class="material-symbols-outlined text-white font-bold">
+                                        add
+                                        </span></button>
+                                </div>
+                            </form>
                         </div>
-                        <form class="add">
-                            <input type="text" name="task" placeholder="New task" autocomplete="off" maxlength="30"/>
-                            <input type="date" class="deadline-input" name="date" onfocus="showPicker()"/>
-                            <button class="plus" data-id="0" name="submit">Submit</button>
-                        </form>
-                    </div>
-                    <div class="taskbox">
-                        <div class="title">
-                            <p>In Progress</p>
-                            <span class="pending"></span>
-                        </div>
-                        <div class="cards pending" data-id="1">
-                            
-                        </div>
-                        <form class="add">
-                            <input type="text" name="task" placeholder="New task" autocomplete="off" maxlength="30"/>
-                            <input type="date" class="deadline-input" name="date"/>
-                            <button class="plus" data-id="1" name="submit">Submit</button>
-                        </form>
-                    </div>
-                    <div class="taskbox">
-                        <div class="title">
-                            <p>Completed</p>
-                            <span class="completed"></span>
-                        </div>
-                        <div class="cards completed" data-id="2">
-                            
-                        </div>
-                        <form class="add">
-                            <input type="text" name="task" placeholder="New task" autocomplete="off" maxlength="30"/>
-                            <input type="date" class="deadline-input" name="date"/>
-                            <button class="plus" data-id="2" name="submit">Submit</button>
-                        </form>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
-        </div>
+            </div>
     </main>
     <script type="module" src="./index.js"></script>
 </body>

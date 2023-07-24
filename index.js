@@ -9,18 +9,24 @@ const taskbox = [todo, pending, completed]
 
 function addTaskCard(task, index) {
     taskbox[index].innerHTML += `
-        <form class="card" draggable="true" data-id="${task.taskId}">
-        <input type="text" name="task" autocomplete="off" value="${task.content}"/>
-        <span class="date">${task.date}</span>
+        <form class="card mb-4 bg-white rounded-md p-4 w-full flex flex-col" draggable="true" data-id="${task.taskId}">
+        <input class="text-black font-normal" type="text" name="task" autocomplete="off" disabled="disabled" value="${task.content}"/>
+        <span class="date self-center justify-self-center text-black">${task.date}</span>
         <input type="date" class="deadline-input hide" name="date"/>
-        <div>
-            <span class="task-id">
+        <div class="flex flex-row justify-between">
+            <span class="task-id rounded-md p-1 font-medium bg-blue-background text-white">
                 #${task.taskId}
             </span>
-            <span>
-                <button class="edit" data-id="${task.taskId}">Edit</button>
-                <button class="update hide" data-id="${task.taskId}" data-column="${index}">Update</button>
-                <button class="delete" data-id="${task.taskId}">Delete</button>
+            <span class="flex justify-end items-center">
+                <button class="edit p-1 bg-cyan-600 rounded-md flex my-auto" data-id="${task.taskId}"><span class="material-symbols-outlined text-white font-bold">
+                edit
+                </span></button>
+                <button class="update hide p-1 bg-cyan-600 rounded-md flex my-auto" data-id="${task.taskId}" data-column="${index}"><span class="material-symbols-outlined text-white font-bold">
+                check
+                </span></button>
+                <button class="delete p-1 bg-red-500 rounded-md flex my-auto ml-2" data-id="${task.taskId}"><span class="material-symbols-outlined text-white font-bold">
+                delete
+                </span></button>
             </span>
         </div>
     </form>
@@ -72,7 +78,7 @@ taskbox.forEach(column => {
         }
 
         if(event.target.classList.contains("update")) {
-           formInput.setAttribute("disabled", "disabled")
+            formInput.setAttribute("disabled", "disabled")
             event.target.classList.add("hide")
             event.target.previousElementSibling.classList.remove("hide")
             dateInput.classList.add("hide")
