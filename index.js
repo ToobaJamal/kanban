@@ -18,13 +18,13 @@ function addTaskCard(task, index) {
                 #${task.taskId}
             </span>
             <span class="flex justify-end items-center">
-                <button class="edit p-1 bg-cyan-600 rounded-md flex my-auto" data-id="${task.taskId}"><span class="material-symbols-outlined text-white font-bold">
+                <button class="edit-btn p-1 bg-cyan-600 rounded-md flex my-auto" data-id="${task.taskId}"><span class="material-symbols-outlined edit text-white font-bold">
                 edit
                 </span></button>
-                <button class="update hide p-1 bg-cyan-600 rounded-md flex my-auto" data-id="${task.taskId}" data-column="${index}"><span class="material-symbols-outlined text-white font-bold">
+                <button class="update-btn hide p-1 bg-cyan-600 rounded-md flex my-auto" data-id="${task.taskId}" data-column="${index}"><span class="material-symbols-outlined update text-white font-bold">
                 check
                 </span></button>
-                <button class="delete p-1 bg-red-500 rounded-md flex my-auto ml-2" data-id="${task.taskId}"><span class="material-symbols-outlined text-white font-bold">
+                <button class="delete-btn p-1 bg-red-500 rounded-md flex my-auto ml-2" data-id="${task.taskId}"><span class="material-symbols-outlined delete text-white font-bold">
                 delete
                 </span></button>
             </span>
@@ -63,24 +63,36 @@ taskbox.forEach(column => {
         const dateDisplay = card.querySelector('span');
         const formInput = card.querySelector('input[name="task"]')
         const dateInput = event.target.closest(".card").querySelector('input[name="date"]')
-
-        if(event.target.classList.contains("edit")) {
+        const editBtn = card.querySelector('.edit-btn')
+        const edit = card.querySelector('.edit')
+        const updateBtn = card.querySelector('.update')
+        const update = card.querySelector('.update-btn')
+        if(event.target.classList.contains("edit") || event.target.classList.contains("edit-btn")) {
+            console.log("UES")
             formInput.removeAttribute("disabled")
             dateInput.classList.remove("hide")
             dateInput.value = dateDisplay.textContent.trim()
             dateDisplay.classList.add("hide")
             event.target.classList.add("hide")
-            event.target.nextElementSibling.classList.remove("hide")
+            editBtn.classList.add('hide')
+            updateBtn.classList.remove('hide')
+            update.classList.remove('hide')
+
+            dateInput.value = dateDisplay.textContent
         }
 
         if(event.target.classList.contains("deadline-input")) {
             dateInput.showPicker()
         }
 
-        if(event.target.classList.contains("update")) {
+        if(event.target.classList.contains("update") || event.target.classList.contains("update-btn")) {
+            console.log("YES")
             formInput.setAttribute("disabled", "disabled")
             event.target.classList.add("hide")
-            event.target.previousElementSibling.classList.remove("hide")
+            updateBtn.classList.add("hide")
+            update.classList.add('hide')
+            editBtn.classList.remove("hide")
+            edit.classList.remove("hide")
             dateInput.classList.add("hide")
             dateDisplay.classList.remove("hide")
 
@@ -129,4 +141,4 @@ function updateTaskCardStyle() {
     }
   }
 
-window.addEventListener('load', updateTaskCardStyle)
+updateTaskCardStyle()
