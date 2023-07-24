@@ -5,3 +5,13 @@
 .card.dragging{
     opacity: 0.4;
 }
+
+.card {
+    border: 2px solid green;
+}
+
+.deadline-passed {
+    border: 2px solid red;
+}
+
+

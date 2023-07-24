@@ -4,7 +4,7 @@ export default class Kanban{
         return data[columnId].tasks
     }
 
-    static insertTask(columnId, content) {
+    static insertTask(columnId, content, date) {
         const data = read()
         const column = data.find(column => {
             return column.columnId == columnId
@@ -12,6 +12,7 @@ export default class Kanban{
         console.log(column)
         const task = {
             taskId: Math.floor(Math.random() * 100000),
+            date: date,
             content: content 
         }
         console.log(task)
@@ -49,7 +50,7 @@ export default class Kanban{
 
         // update task
         task.content = updatedContent.content
-
+        task.date = updatedContent.date
         // update column
         currentColumn.tasks.splice(currentColumn.tasks.indexOf(task), 1)
         targetColumn.tasks.push(task)
