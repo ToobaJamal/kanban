@@ -95,7 +95,6 @@ function save(data) {
 function columnCount() {
     const data = read()
     const todo = document.querySelector("span.todo")
-    console.log(todo)
     
     todo.textContent = data[0].tasks.length
 
