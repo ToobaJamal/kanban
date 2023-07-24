@@ -4,7 +4,7 @@ const todo = document.querySelector(".cards.todo")
 const pending = document.querySelector(".cards.pending")
 const completed= document.querySelector(".cards.completed")
 const cards = document.getElementsByClassName("card")
-console.log(cards)
+
 const taskbox = [todo, pending, completed]
 
 function addTaskCard(task, index) {
@@ -27,15 +27,11 @@ function addTaskCard(task, index) {
         `
 }
 
-
-
 Kanban.getAllTasks().forEach((tasks, index) => {
     tasks.forEach(task => {
         addTaskCard(task, index)
     })
 })
-
-
 
 const addForm = document.querySelectorAll(".add") 
 
@@ -58,7 +54,6 @@ taskbox.forEach(column => {
 
         if (!card) return
 
-        //const dateInput = card.querySelector('input[name="date"]');
         const dateDisplay = card.querySelector('span');
         const formInput = card.querySelector('input[name="task"]')
         const dateInput = event.target.closest(".card").querySelector('input[name="date"]')
@@ -67,7 +62,6 @@ taskbox.forEach(column => {
             formInput.removeAttribute("disabled")
             dateInput.classList.remove("hide")
             dateInput.value = dateDisplay.textContent.trim()
-            console.log(dateInput) // Set the date input value to the current date display value
             dateDisplay.classList.add("hide")
             event.target.classList.add("hide")
             event.target.nextElementSibling.classList.remove("hide")
@@ -107,28 +101,26 @@ taskbox.forEach(column => {
 
     column.addEventListener("dragover", event => {
         const card = document.querySelector(".dragging")
-        console.log(card)
         column.appendChild(card)
     })
 
     column.addEventListener("dragend", event => {
         if(event.target.classList.contains("card")) {
             event.target.classList.remove("dragging")
-            console.log(event.target.task.value)
             Kanban.updateTask(event.target.dataset.id, {columnId: event.target.parentElement.dataset.id, content: event.target.task.value})
         }
     })
 })
+
 function updateTaskCardStyle() {
     const now = new Date();
     for(const card of cards) {
-        console.log("YES")
-        const deadlineInput = card.querySelector('.date');
-        console.log(deadlineInput)
-        const deadline = new Date(deadlineInput.textContent);
+        const deadlineInput = card.querySelector('.date')
+        const deadline = new Date(deadlineInput.textContent)
         if (deadline < now) {
-            card.classList.add('deadline-passed');
+            card.classList.add('deadline-passed')
           }
     }
   }
-window.addEventListener('load', updateTaskCardStyle);
+
+window.addEventListener('load', updateTaskCardStyle)

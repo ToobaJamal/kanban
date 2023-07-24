@@ -9,13 +9,11 @@ export default class Kanban{
         const column = data.find(column => {
             return column.columnId == columnId
         })
-        console.log(column)
         const task = {
             taskId: Math.floor(Math.random() * 100000),
             date: date,
             content: content 
         }
-        console.log(task)
         column.tasks.push(task)
         save(data)
  
@@ -96,7 +94,6 @@ function save(data) {
 
 function columnCount() {
     const data = read()
-    console.log(data[0].tasks)
     const todo = document.querySelector("span.todo")
     console.log(todo)
     
