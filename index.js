@@ -24,7 +24,7 @@ function addTaskCard(task, index) {
                 <button class="update-btn hide p-1 bg-cyan-600 rounded-md flex my-auto" data-id="${task.taskId}" data-column="${index}"><span class="material-symbols-outlined update text-white font-bold">
                 check
                 </span></button>
-                <button class="delete-btn p-1 bg-red-500 rounded-md flex my-auto ml-2" data-id="${task.taskId}"><span class="material-symbols-outlined delete text-white font-bold">
+                <button class="delete-btn p-1 bg-red-500 rounded-md flex my-auto ml-2" data-id="${task.taskId}"><span class="material-symbols-outlined delete text-white font-bold" >
                 delete
                 </span></button>
             </span>
@@ -67,6 +67,8 @@ taskbox.forEach(column => {
         const edit = card.querySelector('.edit')
         const updateBtn = card.querySelector('.update')
         const update = card.querySelector('.update-btn')
+        const deleteBtn = card.querySelector('.delete-btn')
+
         if(event.target.classList.contains("edit") || event.target.classList.contains("edit-btn")) {
             console.log("UES")
             formInput.removeAttribute("disabled")
@@ -88,26 +90,24 @@ taskbox.forEach(column => {
         if(event.target.classList.contains("update") || event.target.classList.contains("update-btn")) {
             console.log("YES")
             formInput.setAttribute("disabled", "disabled")
-            event.target.classList.add("hide")
             updateBtn.classList.add("hide")
             update.classList.add('hide')
             editBtn.classList.remove("hide")
             edit.classList.remove("hide")
             dateInput.classList.add("hide")
             dateDisplay.classList.remove("hide")
-
             dateDisplay.textContent = dateInput.value
 
-            const taskId = event.target.dataset.id
-            const columnId = event.target.dataset.column
+            const taskId = update.dataset.id
+            const columnId = update.dataset.column
             const content =formInput.value
             const date = dateInput.value
             Kanban.updateTask(taskId, {columnId, date, content})
         }
 
-        if(event.target.classList.contains("delete")) {
+        if(event.target.classList.contains("delete") || event.target.classList.contains("delete-btn")) {
             formInput.parentElement.remove()
-            Kanban.deleteTask(event.target.dataset.id)
+            Kanban.deleteTask(deleteBtn.dataset.id)
         }
     })
 
