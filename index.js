@@ -135,7 +135,8 @@ function updateTaskCardStyle() {
     for(const card of cards) {
         const deadlineInput = card.querySelector('.date')
         const deadline = new Date(deadlineInput.textContent)
-        if (deadline < now) {
+        const columnId = card.querySelector('.update-btn').dataset.column
+        if (columnId !== 2 && deadline < now) {
             card.classList.add('deadline-passed')
           }
     }
