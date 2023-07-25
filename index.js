@@ -39,6 +39,18 @@ Kanban.getAllTasks().forEach((tasks, index) => {
   });
 });
 
+function updateTaskCardStyle() {
+    const now = new Date();
+    for (const card of cards) {
+      const deadlineInput = card.querySelector(".date");
+      const deadline = new Date(deadlineInput.textContent);
+      const columnId = card.querySelector(".update-btn").dataset.column;
+      if (columnId !== 2 && deadline < now) {
+        card.classList.add("deadline-passed");
+      }
+    }
+  }
+
 const addForm = document.querySelectorAll(".add");
 
 addForm.forEach((form) => {
@@ -121,6 +133,8 @@ taskbox.forEach((column) => {
       formInput.parentElement.remove();
       Kanban.deleteTask(deleteBtn.dataset.id);
     }
+
+    updateTaskCardStyle()
   });
 
   column.addEventListener("dragstart", (event) => {
@@ -145,17 +159,5 @@ taskbox.forEach((column) => {
     }
   });
 });
-
-function updateTaskCardStyle() {
-  const now = new Date();
-  for (const card of cards) {
-    const deadlineInput = card.querySelector(".date");
-    const deadline = new Date(deadlineInput.textContent);
-    const columnId = card.querySelector(".update-btn").dataset.column;
-    if (columnId !== 2 && deadline < now) {
-      card.classList.add("deadline-passed");
-    }
-  }
-}
 
 updateTaskCardStyle();
