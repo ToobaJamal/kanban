@@ -44,8 +44,7 @@ const addForm = document.querySelectorAll(".add")
 addForm.forEach(form => {
     form.addEventListener("submit", event => {
         event.preventDefault()
-        console.log(form.date)
-        if(form.task.value.trim()) {
+        if(form.task.value.trim() && form.date.value) {
             const task = Kanban.insertTask(form.submit.dataset.id, form.task.value.trim(), form.date.value)
             addTaskCard(task, form.submit.dataset.id)
             form.reset()
@@ -125,7 +124,7 @@ taskbox.forEach(column => {
     column.addEventListener("dragend", event => {
         if(event.target.classList.contains("card")) {
             event.target.classList.remove("dragging")
-            Kanban.updateTask(event.target.dataset.id, {columnId: event.target.parentElement.dataset.id, content: event.target.task.value})
+            Kanban.updateTask(event.target.dataset.id, {columnId: event.target.parentElement.dataset.id, date: event.target.querySelector('span').textContent, content: event.target.task.value})
         }
     })
 })
