@@ -69,7 +69,6 @@ taskbox.forEach(column => {
         const deleteBtn = card.querySelector('.delete-btn')
 
         if(event.target.classList.contains("edit") || event.target.classList.contains("edit-btn")) {
-            console.log("UES")
             formInput.removeAttribute("disabled")
             dateInput.classList.remove("hide")
             dateInput.value = dateDisplay.textContent.trim()
@@ -87,7 +86,6 @@ taskbox.forEach(column => {
         }
 
         if(event.target.classList.contains("update") || event.target.classList.contains("update-btn")) {
-            console.log("YES")
             formInput.setAttribute("disabled", "disabled")
             updateBtn.classList.add("hide")
             update.classList.add('hide')
