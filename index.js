@@ -33,10 +33,22 @@ function addTaskCard(task, index) {
         `;
 }
 
+function updateAddText() {
+  taskbox.forEach(column => {
+    if(!column.querySelector(".card")) {
+      column.querySelector(".addText").textContent = "Add tasks to organize your day!";
+    }
+    else {
+      column.querySelector(".addText").textContent = "";
+    }
+  })
+}
+
 Kanban.getAllTasks().forEach((tasks, index) => {
   tasks.forEach((task) => {
     addTaskCard(task, index);
   });
+  updateAddText();
 });
 
 function updateTaskCardStyle() {
@@ -65,6 +77,8 @@ addForm.forEach((form) => {
       addTaskCard(task, form.submit.dataset.id);
       form.reset();
     }
+    form.previousElementSibling.querySelector(".addText").style.display = "none";
+    updateTaskCardStyle();
   });
 });
 
@@ -72,7 +86,6 @@ taskbox.forEach((column) => {
   column.addEventListener("click", (event) => {
     event.preventDefault();
     const card = event.target.closest(".card");
-
     if (!card) return;
 
     const dateDisplay = card.querySelector("span");
@@ -132,9 +145,10 @@ taskbox.forEach((column) => {
     ) {
       formInput.parentElement.remove();
       Kanban.deleteTask(deleteBtn.dataset.id);
+      updateAddText();
     }
 
-    updateTaskCardStyle()
+    updateTaskCardStyle();
   });
 
   column.addEventListener("dragstart", (event) => {
@@ -145,7 +159,8 @@ taskbox.forEach((column) => {
 
   column.addEventListener("dragover", (event) => {
     const card = document.querySelector(".dragging");
-    column.appendChild(card);
+      updateAddText();
+      column.appendChild(card);
   });
 
   column.addEventListener("dragend", (event) => {
