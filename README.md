@@ -26,4 +26,10 @@ cd kanban
 2. When a task is completed, drag and drop it from 'Todo'/ 'In progress' to 'Completed'
 3. Task's red border indicates a passed deadline
 
+## Demo
+
+https://github.com/ToobaJamal/kanban/assets/52610124/de040631-5746-439d-8b37-21367d9a27df
+
+
+
 
